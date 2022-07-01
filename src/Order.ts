@@ -1,11 +1,12 @@
+import Cpf from "./Cpf";
 import OrderProduct from "./OrderProduct";
 import Product from "./Product";
 
 export default class Order {
   products: OrderProduct[] = []
 
-  constructor() {
-
+  constructor(readonly cpf: Cpf) {
+    if (!this.cpf.isValid()) throw new Error("Invalid CPF")
   }
 
   addProduct(product: Product) {
