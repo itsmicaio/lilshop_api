@@ -1,6 +1,7 @@
 import Product from '../src/Product'
 import Order from '../src/Order'
 import Cpf from '../src/Cpf';
+import Coupom from '../src/Coupom';
 
 let product1: Product;
 let product2: Product;
@@ -55,4 +56,13 @@ test("Deve criar um pedido com CPF inválido", function () {
   const invalidCpf = new Cpf("444.568.126-99")
 
   expect(() => new Order(invalidCpf)).toThrow(new Error("Invalid CPF"))
+})
+
+test("Deve calcular um pedido com desconto de 3%", function () {
+  const order = new Order(validCpf)
+  order.addProduct(product1)
+  const coupom = new Coupom("ABC-3", 3)
+  order.addCoupom(coupom)
+
+  expect(order.total()).toBe(290.9903)
 })
