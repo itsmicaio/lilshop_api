@@ -11,6 +11,16 @@ beforeEach(function () {
   )
 })
 
+test("Deve definir a quantidade de itens no pedido para 3", function () {
+  const orderProduct = new OrderProduct(product)
+  expect(orderProduct.setQuantity(3)).toBe(true)
+})
+
+test("Deve definir a quantidade de itens no pedido para -3", function () {
+  const orderProduct = new OrderProduct(product)
+  expect(orderProduct.setQuantity(-3)).toBe(false)
+})
+
 test("Deve criar calcular o valor total do produto no pedido", function () {
   const orderProduct = new OrderProduct(product)
 

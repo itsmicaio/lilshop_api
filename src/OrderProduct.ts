@@ -10,7 +10,9 @@ export default class OrderProduct {
   }
 
   setQuantity(newQuantity: number) {
-    this.quantity = (newQuantity > 0) ? newQuantity : this.quantity = 1
+    if (newQuantity < 0) return false
+    this.quantity = newQuantity
+    return true
   }
 
   total(): number {

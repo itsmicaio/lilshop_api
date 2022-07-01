@@ -4,8 +4,12 @@ test("Deve validar um número de cpf em branco", function () {
   expect(() => new Cpf("")).toThrow(new Error("Invalid CPF"))
 })
 
-test("Deve validar CPF com números de digitios diferente de 1", function () {
+test("Deve validar CPF com número de digitos maior que 14", function () {
   expect(() => new Cpf("123.456.789-12/3456")).toThrow(new Error("Invalid CPF"))
+})
+
+test("Deve validar CPF com número de digitos menor que 11", function () {
+  expect(() => new Cpf("123456789")).toThrow(new Error("Invalid CPF"))
 })
 
 test("Deve validar CPF com todos os digítos iguais", function () {
