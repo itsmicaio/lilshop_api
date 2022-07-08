@@ -12,15 +12,26 @@ test("Deve validar CPF com número de digitos menor que 11", function () {
   expect(() => new Cpf("123456789")).toThrow(new Error("Invalid CPF"))
 })
 
-test("Deve validar CPF com todos os digítos iguais", function () {
-  expect(() => new Cpf("11111111111")).toThrow(new Error("Invalid CPF"))
+const CPFsWithSameDigits = [
+  "111.111.111-11",
+  "222.222.222-22",
+  "888.888.888-88"
+]
+
+test.each(CPFsWithSameDigits)("Deve validar CPF com todos os digítos iguais", function (cpfString) {
+  expect(() => new Cpf(cpfString)).toThrow(new Error("Invalid CPF"))
 });
 
-test("Cpf inválido retorna 'false'", function () {
+test("Deve validar um CPF inválido", function () {
   expect(() => new Cpf("123.445.645-12")).toThrow(new Error("Invalid CPF"))
 })
 
-test("Cpf válido retorna 'true'", function () {
-  const cpf = new Cpf("143.402.457-12")
+const validCPFs = [
+	"886.634.854-68",
+	"47308766870"
+];
+
+test.each(validCPFs)("Deve validar um CPF válido", function (cpfString) {
+  const cpf = new Cpf(cpfString)
   expect(cpf).toBeDefined();
 })
