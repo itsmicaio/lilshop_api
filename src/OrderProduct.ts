@@ -4,7 +4,8 @@ export default class OrderProduct {
   quantity: number;
 
   constructor(
-    readonly product: Product,
+    readonly productId: number,
+    readonly price: number,
     quantity: number
   ) {
     this.quantity = quantity;
@@ -17,6 +18,6 @@ export default class OrderProduct {
   }
 
   total(): number {
-    return (this.product.price * this.quantity)
+    return (this.price * this.quantity)
   }
 }

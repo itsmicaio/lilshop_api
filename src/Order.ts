@@ -17,7 +17,7 @@ export default class Order {
   }
 
   addProduct(product: Product, quantity: number) {
-    this.products.push(new OrderProduct(product, quantity))
+    this.products.push(new OrderProduct(product.productId, product.price, quantity))
   }
 
   addProducts(orderProducts: {product: Product, quantity: number}[]) {
