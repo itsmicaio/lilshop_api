@@ -1,17 +1,18 @@
 import Product from "./Product";
 
 export default class OrderProduct {
-  quantity: number = 1
+  quantity: number;
 
   constructor(
-    readonly product: Product
+    readonly product: Product,
+    quantity: number
   ) {
-    
+    this.quantity = quantity;
   }
 
-  setQuantity(newQuantity: number) {
-    if (newQuantity < 0) return false
-    this.quantity = newQuantity
+  setQuantity(quantity: number) {
+    if (quantity < 0) return false
+    this.quantity = quantity
     return true
   }
 

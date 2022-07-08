@@ -16,13 +16,14 @@ export default class Order {
     this.coupom = coupom
   }
 
-  addProduct(product: Product) {
-    this.products.push(new OrderProduct(product))
+  addProduct(product: Product, quantity: number) {
+    this.products.push(new OrderProduct(product, quantity))
   }
 
-  addProducts(products: Product[]) {
-    for (var index in products) {
-      this.addProduct(products[index])
+  addProducts(orderProducts: {product: Product, quantity: number}[]) {
+    for (const orderProduct of orderProducts) {
+      const {product, quantity} = orderProduct
+      this.addProduct(product, quantity)
     }
   }
 

@@ -12,24 +12,23 @@ beforeEach(function () {
 })
 
 test("Deve definir a quantidade de itens no pedido para 3", function () {
-  const orderProduct = new OrderProduct(product)
+  const orderProduct = new OrderProduct(product, 1)
   expect(orderProduct.setQuantity(3)).toBe(true)
 })
 
 test("Deve definir a quantidade de itens no pedido para -3", function () {
-  const orderProduct = new OrderProduct(product)
+  const orderProduct = new OrderProduct(product, 1)
   expect(orderProduct.setQuantity(-3)).toBe(false)
 })
 
-test("Deve criar calcular o valor total do produto no pedido", function () {
-  const orderProduct = new OrderProduct(product)
+test("Deve calcular o valor total do produto no pedido", function () {
+  const orderProduct = new OrderProduct(product, 1)
 
   expect(orderProduct.total()).toBe(100)
 })
 
 test("Deve criar calcular o valor total de 3x o produto no pedido", function () {
-  const orderProduct = new OrderProduct(product)
-  orderProduct.setQuantity(3)
+  const orderProduct = new OrderProduct(product, 3)
 
   expect(orderProduct.total()).toBe(300)
 })
