@@ -5,8 +5,8 @@ let product: Product;
 
 beforeEach(function () {
   product = new Product(
+    1,
     "Curso Code Clean",
-    "Código limpo de verdade",
     100
   )
 })

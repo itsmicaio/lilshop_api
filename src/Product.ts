@@ -1,7 +1,7 @@
 export default class Product {
   constructor(
-    readonly name: String,
-    readonly description: String,
+    readonly productId: number,
+    readonly description: string,
     readonly price: number
   ) {
     

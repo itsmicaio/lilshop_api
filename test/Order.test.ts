@@ -10,20 +10,20 @@ let validCpf: string;
 
 beforeEach(function () {
   product1 = new Product(
+    1,
     "Curso Code Clean",
-    "Código limpo de verdade",
     299.99
   );
 
   product2 = new Product(
-    "Curso JavaScript",
-    "JS do básico ao avançado",
+    2,
+    "Curso JavaScript Masterclass",
     199.99
   );
 
   product3 = new Product(
+    3,
     "Curso JavaScript",
-    "TS do básico ao avançado",
     99.99
   );
 

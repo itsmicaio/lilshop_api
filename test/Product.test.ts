@@ -2,10 +2,10 @@ import Product from '../src/Product'
 
 test("Deve criar um produto", function () {
   const product = new Product(
+    1,
     "Curso Code Clean",
-    "Código limpo de verdade",
     199.99
   )
 
-  expect(product instanceof Product).toBe(true)
+  expect(product).toBeDefined()
 })
