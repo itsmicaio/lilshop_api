@@ -17,9 +17,10 @@ test("Deve validar CPF com todos os digítos iguais", function () {
 });
 
 test("Cpf inválido retorna 'false'", function () {
-  expect(new Cpf("123.445.645-12").isValid()).toBe(false);
+  expect(() => new Cpf("123.445.645-12")).toThrow(new Error("Invalid CPF"))
 })
 
 test("Cpf válido retorna 'true'", function () {
-  expect(new Cpf("143.402.457-12").isValid()).toBe(true);
+  const cpf = new Cpf("143.402.457-12")
+  expect(cpf).toBeDefined();
 })

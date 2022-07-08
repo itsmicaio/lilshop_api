@@ -4,11 +4,12 @@ import OrderProduct from "./OrderProduct";
 import Product from "./Product";
 
 export default class Order {
-  products: OrderProduct[] = []
+  cpf: Cpf;
+  products: OrderProduct[] = [];
   coupom?: Coupom;
 
-  constructor(readonly cpf: Cpf) {
-    if (!this.cpf.isValid()) throw new Error("Invalid CPF")
+  constructor(cpf: string) {
+    this.cpf = new Cpf(cpf)
   }
 
   addCoupom(coupom: Coupom) {
@@ -28,12 +29,9 @@ export default class Order {
   total() {
     const sumOfProducts = this.products.reduce(
       (total, currentProduct) => total + currentProduct.total(), 0
-    )
-
-    const discount = this.coupom ? this.coupom.discountOf(sumOfProducts) : 0
-
-    const total = sumOfProducts - discount
-
-    return total
+    );
+    const discount = this.coupom ? this.coupom.discountOf(sumOfProducts) : 0;
+    const total = sumOfProducts - discount;
+    return total;
   }
 }

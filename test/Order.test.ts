@@ -6,28 +6,28 @@ import Coupom from '../src/Coupom';
 let product1: Product;
 let product2: Product;
 let product3: Product;
-let validCpf: Cpf
+let validCpf: string;
 
 beforeEach(function () {
   product1 = new Product(
     "Curso Code Clean",
     "Código limpo de verdade",
     299.99
-  )
+  );
 
   product2 = new Product(
     "Curso JavaScript",
     "JS do básico ao avançado",
     199.99
-  )
+  );
 
   product3 = new Product(
     "Curso JavaScript",
     "TS do básico ao avançado",
     99.99
-  )
+  );
 
-  validCpf = new Cpf("143.402.457-12")
+  validCpf = "143.402.457-12";
 })
 
 test("Deve calcular o valor total de um pedido com 1 produto", function () {
@@ -53,7 +53,7 @@ test("Deve criar calcular o valor total de 3x um produto no pedido", function ()
 })
 
 test("Deve criar um pedido com CPF inválido", function () {
-  const invalidCpf = new Cpf("444.568.126-99")
+  const invalidCpf = "444.568.126-99"
 
   expect(() => new Order(invalidCpf)).toThrow(new Error("Invalid CPF"))
 })

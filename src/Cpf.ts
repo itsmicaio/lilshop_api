@@ -4,11 +4,8 @@ export default class Cpf {
   validator: CpfValidator
 
   constructor(readonly documentNumber: string) {
-    if (this.isBlank(documentNumber)) throw new Error("Invalid CPF");
-    if (!this.isValidLength(this.getCleanDocumentNumber())) throw new Error("Invalid CPF");
-    if (this.areEqualDigits(this.getCleanDocumentNumber())) throw new Error("Invalid CPF");
-
     this.validator = new CpfValidator(this.getDigitsArray())
+    if (!this.isValid(this.documentNumber)) throw new Error("Invalid CPF");
   }
 
   getDigitsArray() {
@@ -19,7 +16,12 @@ export default class Cpf {
     return this.documentNumber.replace(/\D+/g, "");
   }
 
-  isValid() {
+  private isValid(cpf: string) {
+    if (this.isBlank(cpf)) return false
+    cpf = this.getCleanDocumentNumber()
+    if (!this.isValidLength(cpf)) return false
+    if (this.areEqualDigits(cpf)) return false
+
     return this.validator.test();
   }
 
