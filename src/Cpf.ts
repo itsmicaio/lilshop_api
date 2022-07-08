@@ -2,13 +2,11 @@ import CpfValidator from "./CpfValidator";
 
 export default class Cpf {
   validator: CpfValidator
-  CPF_LENGTH = 11
-  FORMATTED_CPF_LENGTH = 14
 
-  constructor(readonly documentNumber: String) {
-    if (this.isBlank()) throw new Error("Invalid CPF");
-    if (!this.isValidLength()) throw new Error("Invalid CPF");
-    if (this.areEqualDigits()) throw new Error("Invalid CPF");
+  constructor(readonly documentNumber: string) {
+    if (this.isBlank(documentNumber)) throw new Error("Invalid CPF");
+    if (!this.isValidLength(this.getCleanDocumentNumber())) throw new Error("Invalid CPF");
+    if (this.areEqualDigits(this.getCleanDocumentNumber())) throw new Error("Invalid CPF");
 
     this.validator = new CpfValidator(this.getDigitsArray())
   }
@@ -18,32 +16,23 @@ export default class Cpf {
   }
 
   getCleanDocumentNumber() {
-    return this.documentNumber
-      .replace('.','')
-      .replace('.','')
-      .replace('-','')
-      .replace(" ","");  
+    return this.documentNumber.replace(/\D+/g, "");
   }
 
   isValid() {
     return this.validator.test();
   }
 
-  private isBlank() {
-    if (!!this.documentNumber) return false;
-  
-    return true;
+  private isBlank(cpf: string) {
+    return !cpf
   }
   
-  private isValidLength() {
-    if (this.documentNumber.length < this.CPF_LENGTH) return false
-    if (this.documentNumber.length > this.FORMATTED_CPF_LENGTH) return false
-  
-    return true
+  private isValidLength(cpf: string) {
+    return cpf.length === 11
   }
 
-  private areEqualDigits() {
-    const digitsArray = this.getDigitsArray()
-    return digitsArray.every(c => c === digitsArray[0])
+  private areEqualDigits(cpf: string) {
+    const [firstDigit] = cpf
+    return [...cpf].every(digit => digit === firstDigit)
   }
 }
