@@ -1,4 +1,4 @@
-export default class Coupom {
+export default class Coupon {
   constructor(
     readonly code: string,
     readonly discountPercentage: number,

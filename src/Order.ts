@@ -1,4 +1,4 @@
-import Coupom from "./Coupom";
+import Coupon from "./Coupon";
 import Cpf from "./Cpf";
 import OrderProduct from "./OrderProduct";
 import Product from "./Product";
@@ -6,15 +6,15 @@ import Product from "./Product";
 export default class Order {
   cpf: Cpf;
   products: OrderProduct[] = [];
-  coupom?: Coupom;
+  coupon?: Coupon;
 
   constructor(cpf: string) {
     this.cpf = new Cpf(cpf)
   }
 
-  addCoupom(coupom: Coupom) {
-    if (new Date() > coupom.validUntil) throw new Error("This coupon is expired")
-    this.coupom = coupom
+  addCoupon(coupon: Coupon) {
+    if (new Date() > coupon.validUntil) throw new Error("This coupon is expired")
+    this.coupon = coupon
   }
 
   addProduct(product: Product, quantity: number) {
@@ -33,7 +33,7 @@ export default class Order {
     const sumOfProducts = this.products.reduce(
       (total, currentProduct) => total + currentProduct.total(), 0
     );
-    const discount = this.coupom ? this.coupom.discountOf(sumOfProducts) : 0;
+    const discount = this.coupon ? this.coupon.discountOf(sumOfProducts) : 0;
     const total = sumOfProducts - discount;
     return total;
   }
