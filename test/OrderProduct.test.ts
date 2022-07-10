@@ -18,7 +18,7 @@ test("Deve definir a quantidade de itens no pedido para 3", function () {
 
 test("Deve definir a quantidade de itens no pedido para -3", function () {
   const orderProduct = new OrderProduct(product.productId, product.price, 1)
-  expect(orderProduct.setQuantity(-3)).toBe(false)
+  expect(() => orderProduct.setQuantity(-3)).toThrow("Invalid quantity")
 })
 
 test("Deve calcular o valor total do produto no pedido", function () {

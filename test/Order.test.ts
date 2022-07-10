@@ -7,6 +7,7 @@ let product1: Product;
 let product2: Product;
 let product3: Product;
 let validCpf: string;
+let order: Order;
 
 beforeEach(function () {
   product1 = new Product(
@@ -28,17 +29,16 @@ beforeEach(function () {
   );
 
   validCpf = "143.402.457-12";
+  order = new Order(validCpf);
 })
 
 test("Deve calcular o valor total de um pedido com 1 produto", function () {
-  const order = new Order(validCpf)
   order.addProduct(product1, 1)
 
   expect(order.total()).toBe(299.99)
 })
 
 test("Deve calcular o valor total de um pedido com 3 produtos", function () {
-  const order = new Order(validCpf)
   order.addProducts([
     { product: product1, quantity: 1 },
     { product: product2, quantity: 1 },
@@ -49,7 +49,6 @@ test("Deve calcular o valor total de um pedido com 3 produtos", function () {
 })
 
 test("Deve criar calcular o valor total de 3x um produto no pedido", function () {
-  const order = new Order(validCpf)
   order.addProducts([
     { product: product1, quantity: 3 },
     { product: product2, quantity: 1 },
@@ -66,10 +65,13 @@ test("Deve criar um pedido com CPF inválido", function () {
 })
 
 test("Deve calcular um pedido com desconto de 3%", function () {
-  const order = new Order(validCpf)
   order.addProduct(product1, 1)
   const coupom = new Coupom("ABC-3", 3)
   order.addCoupom(coupom)
 
   expect(order.total()).toBe(290.9903)
+})
+
+test("Deve criar um pedido com quantidade negativa", function () {
+  expect(() => order.addProduct(product1, -1)).toThrow("Invalid quantity")
 })
