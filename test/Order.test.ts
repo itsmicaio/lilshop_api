@@ -1,7 +1,7 @@
 import Product from '../src/Product'
 import Order from '../src/Order'
-import Cpf from '../src/Cpf';
 import Coupom from '../src/Coupom';
+import sinon from 'sinon'
 
 let product1: Product;
 let product2: Product;
@@ -66,10 +66,15 @@ test("Deve criar um pedido com CPF inválido", function () {
 
 test("Deve calcular um pedido com desconto de 3%", function () {
   order.addProduct(product1, 1)
-  const coupom = new Coupom("ABC-3", 3)
+  const coupom = new Coupom("ABC-3", 3, new Date())
   order.addCoupom(coupom)
 
   expect(order.total()).toBe(290.9903)
+})
+
+test("Deve aplicar um cupom de desconto vencido", function() {
+  const coupom = new Coupom("ABC-3", 3, new Date("2022-01-01T00:00:00"))
+  expect(() => order.addCoupom(coupom)).toThrow("This coupon is expired")
 })
 
 test("Deve criar um pedido com quantidade negativa", function () {

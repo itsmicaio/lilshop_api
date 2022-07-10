@@ -13,6 +13,7 @@ export default class Order {
   }
 
   addCoupom(coupom: Coupom) {
+    if (new Date() > coupom.validUntil) throw new Error("This coupon is expired")
     this.coupom = coupom
   }
 

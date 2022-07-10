@@ -1,7 +1,8 @@
 export default class Coupom {
   constructor(
-    readonly code: String,
-    readonly discountPercentage: number
+    readonly code: string,
+    readonly discountPercentage: number,
+    readonly validUntil: Date
   ) {
     
   }
