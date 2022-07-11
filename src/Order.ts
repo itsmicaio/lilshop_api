@@ -2,6 +2,7 @@ import Coupon from "./Coupon";
 import Cpf from "./Cpf";
 import OrderProduct from "./OrderProduct";
 import Product from "./Product";
+import ShippingCalculator from "./ShippingCalculator";
 
 export default class Order {
   cpf: Cpf;
@@ -19,7 +20,7 @@ export default class Order {
 
   addProduct(product: Product, quantity: number) {
     if (this.isProductAlreadyAdded(product)) throw new Error("Product is already added")
-    this.products.push(new OrderProduct(product.productId, product.price, quantity))
+    this.products.push(new OrderProduct(product.productId, product.price, product.dimension, quantity))
   }
 
   addProducts(orderProducts: {product: Product, quantity: number}[]) {
@@ -34,8 +35,9 @@ export default class Order {
       (total, currentProduct) => total + currentProduct.total(), 0
     );
     const discount = this.coupon ? this.coupon.discountOf(sumOfProducts) : 0;
-    const total = sumOfProducts - discount;
-    return total;
+    const shipping = new ShippingCalculator(this.products, 1000).calculate()
+    const total = sumOfProducts + shipping - discount;
+    return parseFloat(total.toFixed(2));
   }
 
   private isProductAlreadyAdded(newProduct: Product) {

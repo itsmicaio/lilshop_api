@@ -1,30 +1,37 @@
 import Product from '../src/Product'
 import Order from '../src/Order'
 import Coupon from '../src/Coupon';
+import Dimension from '../src/Dimension';
 
 let product1: Product;
 let product2: Product;
 let product3: Product;
 let validCpf: string;
 let order: Order;
+let dimension: Dimension;
 
 beforeEach(function () {
+  dimension = new Dimension(200, 100, 50, 40);
+
   product1 = new Product(
     1,
-    "Curso Code Clean",
-    299.99
+    "Airpods",
+    299.99,
+    dimension
   );
 
   product2 = new Product(
     2,
-    "Curso JavaScript Masterclass",
-    199.99
+    "Echo Dot",
+    199.99,
+    dimension
   );
 
   product3 = new Product(
     3,
-    "Curso JavaScript",
-    99.99
+    "iPhone 12",
+    99.99,
+    dimension
   );
 
   validCpf = "143.402.457-12";
@@ -34,7 +41,7 @@ beforeEach(function () {
 test("Deve calcular o valor total de um pedido com 1 produto", function () {
   order.addProduct(product1, 1)
 
-  expect(order.total()).toBe(299.99)
+  expect(order.total()).toBe(299.99 + 400)
 })
 
 test("Deve calcular o valor total de um pedido com 3 produtos", function () {
@@ -44,7 +51,7 @@ test("Deve calcular o valor total de um pedido com 3 produtos", function () {
     { product: product3, quantity: 1 }
   ])
 
-  expect(order.total()).toBe(599.97)
+  expect(order.total()).toBe(599.97 + (400 * 3))
 })
 
 test("Deve criar calcular o valor total de 3x um produto no pedido", function () {
@@ -54,7 +61,7 @@ test("Deve criar calcular o valor total de 3x um produto no pedido", function ()
     { product: product3, quantity: 1 }
   ])
 
-  expect(order.total()).toBe(1199.95)
+  expect(order.total()).toBe(1199.95 + (400 * 5))
 })
 
 test("Deve criar um pedido com CPF inválido", function () {
@@ -68,7 +75,7 @@ test("Deve calcular um pedido com desconto de 3%", function () {
   const coupon = new Coupon("ABC-3", 3, new Date())
   order.addCoupon(coupon)
 
-  expect(order.total()).toBe(290.9903)
+  expect(order.total()).toBe(290.99 + 400)
 })
 
 test("Deve aplicar um cupom de desconto vencido", function() {

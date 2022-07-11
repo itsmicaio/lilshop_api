@@ -1,34 +1,36 @@
 import Product from '../src/Product'
 import OrderProduct from '../src/OrderProduct'
+import Dimension from '../src/Dimension';
 
 let product: Product;
 
 beforeEach(function () {
   product = new Product(
     1,
-    "Curso Code Clean",
-    100
+    "Echo Dot",
+    100,
+    new Dimension(200, 100, 50, 40)
   )
 })
 
 test("Deve definir a quantidade de itens no pedido para 3", function () {
-  const orderProduct = new OrderProduct(product.productId, product.price, 1)
+  const orderProduct = new OrderProduct(product.productId, product.price, product.dimension, 1)
   expect(orderProduct.setQuantity(3)).toBe(true)
 })
 
 test("Deve definir a quantidade de itens no pedido para -3", function () {
-  const orderProduct = new OrderProduct(product.productId, product.price, 1)
+  const orderProduct = new OrderProduct(product.productId, product.price, product.dimension, 1)
   expect(() => orderProduct.setQuantity(-3)).toThrow("Invalid quantity")
 })
 
 test("Deve calcular o valor total do produto no pedido", function () {
-  const orderProduct = new OrderProduct(product.productId, product.price, 1)
+  const orderProduct = new OrderProduct(product.productId, product.price, product.dimension, 1)
 
   expect(orderProduct.total()).toBe(100)
 })
 
 test("Deve criar calcular o valor total de 3x o produto no pedido", function () {
-  const orderProduct = new OrderProduct(product.productId, product.price, 3)
+  const orderProduct = new OrderProduct(product.productId, product.price, product.dimension, 3)
 
   expect(orderProduct.total()).toBe(300)
 })
