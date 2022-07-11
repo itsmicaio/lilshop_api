@@ -1,10 +1,11 @@
-import Dimension from "./Dimension";
+import OrderProduct from "./OrderProduct";
+import Product from "./Product";
 
 export default class ShippingCalculator {
   MIN_SHIPPING_VALUE = 10.0
 
   constructor(
-    readonly dimesions: Dimension[],
+    readonly orderProducts: OrderProduct[],
     readonly distance: number
   ) {}
 
@@ -15,8 +16,10 @@ export default class ShippingCalculator {
 
   private calculateAll() {
     let acummulator = 0
-    for (const dimesion of this.dimesions) {
-      acummulator += this.distance * dimesion.calculateVolume() * (dimesion.calculateDensity() / 100)
+    for (const orderProduct of this.orderProducts) {
+      const dimension = orderProduct.dimension
+      const value = this.distance * dimension.calculateVolume() * (dimension.calculateDensity() / 100)
+      acummulator += value * orderProduct.quantity
     }
     return acummulator
   }
