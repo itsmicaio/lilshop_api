@@ -7,7 +7,6 @@ export default class OrderProduct {
   constructor(
     readonly productId: number,
     readonly price: number,
-    readonly dimension: Dimension,
     quantity: number
   ) {
     this.setQuantity(quantity);
