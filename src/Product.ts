@@ -6,7 +6,13 @@ export default class Product {
     readonly description: string,
     readonly price: number,
     readonly dimension: Dimension = new Dimension(0, 0, 0, 0)
-  ) {
-    
+  ) {}
+
+  getVolume() {
+    return this.dimension.getVolume()
+  }
+
+  getDensity() {
+    return this.dimension.getDensity()
   }
 }
