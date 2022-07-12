@@ -2,18 +2,14 @@ import Product from '../src/Product'
 import Order from '../src/Order'
 import Coupon from '../src/Coupon';
 import Dimension from '../src/Dimension';
-import Sinon from 'sinon';
 
 let product1: Product;
 let product2: Product;
 let product3: Product;
 let validCpf: string;
 let order: Order;
-let dimension: Dimension;
 
 beforeEach(function () {
-  dimension = new Dimension(200, 100, 50, 40);
-
   product1 = new Product(
     1,
     "Airpods",
@@ -60,28 +56,32 @@ test("Deve criar calcular o valor total de 3x um produto no pedido", function ()
 })
 
 test("Deve criar um pedido com CPF inválido", function () {
-  const invalidCpf = "444.568.126-99"
-  expect(() => new Order(invalidCpf)).toThrow(new Error("Invalid CPF"))
+  expect(() => new Order("444.568.126-99")).toThrow(new Error("Invalid CPF"))
 })
 
 test("Deve calcular um pedido com desconto de 3%", function () {
   order = new Order(validCpf, new Date("2022-01-01T00:00:00") )
   order.addProduct(product1, 1);
-  const coupon = new Coupon("ABC-3", 3, new Date());
-  order.addCoupon(coupon);
+  order.addCoupon(new Coupon("VALE3", 3, new Date()));
   expect(order.total()).toBe(290.99);
 })
 
 test("Deve aplicar um cupom de desconto vencido", function() {
-  const coupon = new Coupon("ABC-3", 3, new Date("2022-01-01T00:00:00"));
+  const coupon = new Coupon("VALE3", 3, new Date("2022-01-01T00:00:00"));
   expect(() => order.addCoupon(coupon)).toThrow("This coupon is expired");
+})
+
+test("Deve calcular um pedido com frete", function () {
+  const product = new Product(4, "Gabinete Gamer", 100, new Dimension(100, 30, 10, 3))
+  order.addProduct(product, 2)
+  expect(order.total()).toBe(260)
 })
 
 test("Deve criar um pedido com quantidade negativa", function () {
   expect(() => order.addProduct(product1, -1)).toThrow("Invalid quantity");
 })
 
-test("Deve adicionar um produto já adicionado ao pedido", function () {
+test("Deve adicionar um produto repetido", function () {
   order.addProduct(product1, 1);
   expect(() => order.addProduct(product1, 1)).toThrow("Duplicated product");
 })

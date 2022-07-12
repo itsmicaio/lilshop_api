@@ -8,6 +8,6 @@ test("Deve calcular o valor do frete com a taxa minima", function () {
 })
 
 test("Deve calcular o valor do frete", function () {
-  const product = new Product(2, "Gabinete Gamer", 100, new Dimension(100, 30, 10, 3))
+  const product = new Product(4, "Gabinete Gamer", 100, new Dimension(100, 30, 10, 3))
   expect(ShippingCalculator.calculate(product)).toBe(30.0)
 })
