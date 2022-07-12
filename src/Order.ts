@@ -10,12 +10,12 @@ export default class Order {
   coupon?: Coupon;
   shipping: number = 0;
 
-  constructor(cpf: string) {
+  constructor(cpf: string, readonly date: Date = new Date()) {
     this.cpf = new Cpf(cpf)
   }
 
   addCoupon(coupon: Coupon) {
-    if (new Date() > coupon.validUntil) throw new Error("This coupon is expired")
+    if (coupon.isExpired(this.date)) throw new Error("This coupon is expired")
     this.coupon = coupon
   }
 

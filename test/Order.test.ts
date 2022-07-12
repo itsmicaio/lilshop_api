@@ -65,12 +65,11 @@ test("Deve criar um pedido com CPF inválido", function () {
 })
 
 test("Deve calcular um pedido com desconto de 3%", function () {
+  order = new Order(validCpf, new Date("2022-01-01T00:00:00") )
   order.addProduct(product1, 1);
   const coupon = new Coupon("ABC-3", 3, new Date());
   order.addCoupon(coupon);
-  const clock = Sinon.useFakeTimers({ now: new Date("2022-01-01T00:00:00") });
   expect(order.total()).toBe(290.99);
-  clock.restore();
 })
 
 test("Deve aplicar um cupom de desconto vencido", function() {

@@ -12,4 +12,8 @@ export default class Coupon {
 
     return discount
   }
+
+  isExpired(date: Date) {
+    return date > this.validUntil
+  }
 }
