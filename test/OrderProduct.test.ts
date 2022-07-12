@@ -1,6 +1,5 @@
 import Product from '../src/Product'
 import OrderProduct from '../src/OrderProduct'
-import Dimension from '../src/Dimension';
 
 let product: Product;
 
@@ -8,8 +7,7 @@ beforeEach(function () {
   product = new Product(
     1,
     "Echo Dot",
-    100,
-    new Dimension(200, 100, 50, 40)
+    100
   )
 })
 

@@ -23,10 +23,10 @@ const dimensions = [
 ]
 
 test.each(dimensions)("Deve calcular o volume em metros cubicos", function ({dimension, volume}) {
-  expect(dimension.calculateVolume()).toBe(volume)
+  expect(dimension.getVolume()).toBe(volume)
 })
 
 test.each(dimensions)("Deve calcular a densidade em kilos / metros cubicos", function ({dimension, density}) {
-  expect(dimension.calculateDensity()).toBe(density)
+  expect(dimension.getDensity()).toBe(density)
 })
 

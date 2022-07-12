@@ -11,13 +11,12 @@ export default class Dimension {
     if (weight < 0) throw new Error("Invalid weight")
   }
 
-  calculateVolume() {
-    const centimeters = this.length * this.width * this.height
-    const meters = centimeters / 1000000
-    return meters
+  getVolume() {
+    return this.length / 100 * this.width / 100 * this.height / 100
   }
 
-  calculateDensity() {
-    return Math.round(this.weight / this.calculateVolume())
+  getDensity() {
+    if(!this.getVolume()) return 0
+    return Math.round(this.weight / this.getVolume())
   }
 }

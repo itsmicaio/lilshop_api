@@ -17,22 +17,19 @@ beforeEach(function () {
   product1 = new Product(
     1,
     "Airpods",
-    299.99,
-    dimension
+    299.99
   );
 
   product2 = new Product(
     2,
     "Echo Dot",
-    199.99,
-    dimension
+    199.99
   );
 
   product3 = new Product(
     3,
     "iPhone 12",
-    99.99,
-    dimension
+    99.99
   );
 
   validCpf = "143.402.457-12";
@@ -41,7 +38,7 @@ beforeEach(function () {
 
 test("Deve calcular o valor total de um pedido com 1 produto", function () {
   order.addProduct(product1, 1);
-  expect(order.total()).toBe(299.99 + 400);
+  expect(order.total()).toBe(299.99);
 })
 
 test("Deve calcular o valor total de um pedido com 3 produtos", function () {
@@ -50,7 +47,7 @@ test("Deve calcular o valor total de um pedido com 3 produtos", function () {
     { product: product2, quantity: 1 },
     { product: product3, quantity: 1 }
   ]);
-  expect(order.total()).toBe(599.97 + (400 * 3));
+  expect(order.total()).toBe(599.97);
 })
 
 test("Deve criar calcular o valor total de 3x um produto no pedido", function () {
@@ -59,7 +56,7 @@ test("Deve criar calcular o valor total de 3x um produto no pedido", function ()
     { product: product2, quantity: 1 },
     { product: product3, quantity: 1 }
   ]);
-  expect(order.total()).toBe(1199.95 + (400 * 5));
+  expect(order.total()).toBe(1199.95);
 })
 
 test("Deve criar um pedido com CPF inválido", function () {
@@ -72,7 +69,7 @@ test("Deve calcular um pedido com desconto de 3%", function () {
   const coupon = new Coupon("ABC-3", 3, new Date());
   order.addCoupon(coupon);
   const clock = Sinon.useFakeTimers({ now: new Date("2022-01-01T00:00:00") });
-  expect(order.total()).toBe(290.99 + 400);
+  expect(order.total()).toBe(290.99);
   clock.restore();
 })
 

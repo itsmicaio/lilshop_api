@@ -11,14 +11,15 @@ export default class ShippingCalculator {
 
   calculate() {
     const value = this.calculateAll()
-    return value < this.MIN_SHIPPING_VALUE ? this.MIN_SHIPPING_VALUE : value
+    if (!value) return 0
+    return Math.max(value, this.MIN_SHIPPING_VALUE)
   };
 
   private calculateAll() {
     let acummulator = 0
     for (const orderProduct of this.orderProducts) {
       const dimension = orderProduct.dimension
-      const value = this.distance * dimension.calculateVolume() * (dimension.calculateDensity() / 100)
+      const value = this.distance * dimension.getVolume() * (dimension.getDensity() / 100)
       acummulator += value * orderProduct.quantity
     }
     return acummulator
