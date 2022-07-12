@@ -83,10 +83,6 @@ test("Deve criar um pedido com quantidade negativa", function () {
 })
 
 test("Deve adicionar um produto já adicionado ao pedido", function () {
-  order.addProducts([
-    { product: product1, quantity: 1 },
-    { product: product2, quantity: 1 },
-    { product: product3, quantity: 1 }
-  ]);
-  expect(() => order.addProduct(product2, 1)).toThrow("Product is already added");
+  order.addProduct(product1, 1);
+  expect(() => order.addProduct(product1, 1)).toThrow("Duplicated product");
 })

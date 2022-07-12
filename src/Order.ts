@@ -20,7 +20,7 @@ export default class Order {
   }
 
   addProduct(product: Product, quantity: number) {
-    if (this.isProductAlreadyAdded(product)) throw new Error("Product is already added")
+    if (this.isDuplicated(product)) throw new Error("Duplicated product")
     this.products.push(new OrderProduct(product.productId, product.price, quantity))
     this.shipping += ShippingCalculator.calculate(product) * quantity
   }
@@ -41,11 +41,7 @@ export default class Order {
     return parseFloat(total.toFixed(2));
   }
 
-  private isProductAlreadyAdded(newProduct: Product) {
-    for (const orderProduct of this.products) {
-      const checker = orderProduct.productId === newProduct.productId
-      if (checker) return true;
-    }
-    return false
+  private isDuplicated(newProduct: Product) {
+    return this.products.some(orderProduct => orderProduct.productId === newProduct.productId)
   }
 }
