@@ -36,12 +36,21 @@ export default class Order {
     return this.shipping
   }
 
-  getTotal() {
-    const sumOfProducts = this.products.reduce(
+  getDiscount(total: number = this.getSubtotal()) {
+    return this.coupon ? this.coupon.discountOf(total) : 0;
+  }
+
+  getSubtotal() {
+    const subtotal = this.products.reduce(
       (total, currentProduct) => total + currentProduct.total(), 0
     );
-    const discount = this.coupon ? this.coupon.discountOf(sumOfProducts) : 0;
-    const total = sumOfProducts + this.shipping - discount;
+    return subtotal
+  }
+
+  getTotal() {
+    const subtotal = this.getSubtotal()
+    const discount = this.getDiscount()
+    const total = subtotal + this.shipping - discount;
     return parseFloat(total.toFixed(2));
   }
 
