@@ -10,7 +10,11 @@ export default class Order {
   coupon?: Coupon;
   shipping: number = 0;
 
-  constructor(cpf: string, readonly date: Date = new Date()) {
+  constructor(
+    cpf: string,
+    readonly date: Date = new Date(),
+    readonly code: string = "202200000000"
+  ) {
     this.cpf = new Cpf(cpf)
   }
 
