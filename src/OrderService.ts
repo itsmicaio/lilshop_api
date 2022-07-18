@@ -11,9 +11,11 @@ export default class OrderService {
 			const item = await this.productRepository.getProduct(orderItem.idProduct);
 			order.addProduct(item, orderItem.quantity);
 		}
-		const total = order.total();
+		const total = order.getTotal();
+		const shipping = order.getShipping();
 		return {
-			total
+			total,
+			shipping
 		};
 	}
 }
@@ -24,5 +26,6 @@ type Input = {
 }
 
 type Output = {
-	total: number
+	total: number,
+	shipping: number
 }

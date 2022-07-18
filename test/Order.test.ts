@@ -34,7 +34,7 @@ beforeEach(function () {
 
 test("Deve calcular o valor total de um pedido com 1 produto", function () {
   order.addProduct(product1, 1);
-  expect(order.total()).toBe(299.99);
+  expect(order.getTotal()).toBe(299.99);
 })
 
 test("Deve calcular o valor total de um pedido com 3 produtos", function () {
@@ -43,7 +43,7 @@ test("Deve calcular o valor total de um pedido com 3 produtos", function () {
     { product: product2, quantity: 1 },
     { product: product3, quantity: 1 }
   ]);
-  expect(order.total()).toBe(599.97);
+  expect(order.getTotal()).toBe(599.97);
 })
 
 test("Deve criar calcular o valor total de 3x um produto no pedido", function () {
@@ -52,7 +52,7 @@ test("Deve criar calcular o valor total de 3x um produto no pedido", function ()
     { product: product2, quantity: 1 },
     { product: product3, quantity: 1 }
   ]);
-  expect(order.total()).toBe(1199.95);
+  expect(order.getTotal()).toBe(1199.95);
 })
 
 test("Deve criar um pedido com CPF inválido", function () {
@@ -63,7 +63,7 @@ test("Deve calcular um pedido com desconto de 3%", function () {
   order = new Order(validCpf, new Date("2022-01-01T00:00:00") )
   order.addProduct(product1, 1);
   order.addCoupon(new Coupon("VALE3", 3, new Date()));
-  expect(order.total()).toBe(290.99);
+  expect(order.getTotal()).toBe(290.99);
 })
 
 test("Deve aplicar um cupom de desconto vencido", function() {
@@ -74,7 +74,7 @@ test("Deve aplicar um cupom de desconto vencido", function() {
 test("Deve calcular um pedido com frete", function () {
   const product = new Product(4, "Gabinete Gamer", 100, new Dimension(100, 30, 10, 3))
   order.addProduct(product, 2)
-  expect(order.total()).toBe(260)
+  expect(order.getTotal()).toBe(260)
 })
 
 test("Deve criar um pedido com quantidade negativa", function () {

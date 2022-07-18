@@ -13,4 +13,5 @@ test("Deve simular um pedido", async function () {
 		]
 	});
 	expect(output.total).toBe(6350);
+	expect(output.shipping).toBe(260)
 });

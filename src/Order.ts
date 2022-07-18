@@ -32,7 +32,11 @@ export default class Order {
     }
   }
 
-  total() {
+  getShipping() {
+    return this.shipping
+  }
+
+  getTotal() {
     const sumOfProducts = this.products.reduce(
       (total, currentProduct) => total + currentProduct.total(), 0
     );
