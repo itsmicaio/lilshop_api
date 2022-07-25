@@ -1,9 +1,9 @@
-import Http from "./Http";
-import OrderService from "./OrderService";
-import CouponRepositoryMemory from "./CouponRepositoryMemory";
-import OrderRepositoryMemory from "./OrderRepositoryMemory";
-import ProductRepositoryDatabase from "./ProductRepositoryDatabase";
-import Connection from "./Connection";
+import Http from "../http/Http";
+import OrderService from "../../application/OrderService";
+import CouponRepositoryMemory from "../repositories/memory/CouponRepositoryMemory";
+import OrderRepositoryMemory from "../repositories/memory/OrderRepositoryMemory";
+import ProductRepositoryDatabase from "../repositories/database/ProductRepositoryDatabase";
+import Connection from "../database/Connection";
 
 export default class OrderController {
 

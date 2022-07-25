@@ -1,4 +1,4 @@
-import Dimension from "../src/Dimension"
+import Dimension from "../../src/domain/entities/Dimension"
 
 test("Deve iniciar uma dimensão com comprimento negativo", function () {
   expect(() => new Dimension(-10, 10, 10, 10)).toThrow("Invalid length")

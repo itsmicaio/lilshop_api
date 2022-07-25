@@ -1,6 +1,6 @@
-import Dimension from "./Dimension";
-import Product from "./Product";
-import ProductRepository from "./ProductRepository";
+import Dimension from "../../../domain/entities/Dimension";
+import Product from "../../../domain/entities/Product";
+import ProductRepository from "../../../domain/repositories/ProductRepository";
 
 export default class ProductRepositoryMemory implements ProductRepository {
 	products: Product[];

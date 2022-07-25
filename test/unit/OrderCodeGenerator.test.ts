@@ -1,5 +1,5 @@
-import OrderCodeGenerator from "../src/OrderCodeGenarator"
-import OrderRepositoryMemory from "../src/OrderRepositoryMemory"
+import OrderCodeGenerator from "../../src/domain/entities/OrderCodeGenarator"
+import OrderRepositoryMemory from "../../src/infra/repositories/memory/OrderRepositoryMemory"
 
 test("Deve gerar o código do pedido", async function () {
   const orderRepository = new OrderRepositoryMemory()

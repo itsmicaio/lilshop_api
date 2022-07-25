@@ -1,4 +1,4 @@
-import OrderRepository from "./OrderRepository";
+import OrderRepository from "../repositories/OrderRepository";
 
 export default class OrderCodeGenerator {
   static SEQUENTIAL_LENGTH = 8;

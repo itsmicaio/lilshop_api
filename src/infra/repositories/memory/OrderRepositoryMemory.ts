@@ -1,7 +1,7 @@
-import Dimension from "./Dimension";
-import Order from "./Order";
-import OrderRepository from "./OrderRepository";
-import Product from "./Product";
+import Dimension from "../../../domain/entities/Dimension";
+import Order from "../../../domain/entities/Order";
+import OrderRepository from "../../../domain/repositories/OrderRepository";
+import Product from "../../../domain/entities/Product";
 
 export default class OrderRepositoryMemory implements OrderRepository {
 	orders: Order[];

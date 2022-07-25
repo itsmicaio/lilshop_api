@@ -1,8 +1,8 @@
-import CouponRepository from "./CouponRepository";
-import Order from "./Order";
-import OrderCodeGenerator from "./OrderCodeGenarator";
-import OrderRepository from "./OrderRepository";
-import ProductRepository from "./ProductRepository";
+import CouponRepository from "../domain/repositories/CouponRepository";
+import Order from "../domain/entities/Order";
+import OrderCodeGenerator from "../domain/entities/OrderCodeGenarator";
+import OrderRepository from "../domain/repositories/OrderRepository";
+import ProductRepository from "../domain/repositories/ProductRepository";
 
 export default class OrderService {
 	constructor(

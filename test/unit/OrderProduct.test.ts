@@ -1,5 +1,5 @@
-import Product from '../src/Product'
-import OrderProduct from '../src/OrderProduct'
+import Product from '../../src/domain/entities/Product'
+import OrderProduct from '../../src/domain/entities/OrderProduct'
 
 let product: Product;
 

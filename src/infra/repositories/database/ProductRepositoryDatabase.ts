@@ -1,8 +1,8 @@
-import Product from "./Product";
-import ProductRepository from "./ProductRepository";
+import Product from "../../../domain/entities/Product";
+import ProductRepository from "../../../domain/repositories/ProductRepository";
 import pgp from "pg-promise";
-import Dimension from "./Dimension";
-import Connection from "./Connection";
+import Dimension from "../../../domain/entities/Dimension";
+import Connection from "../../database/Connection";
 
 export default class ProductRepositoryDatabase implements ProductRepository {
   constructor(readonly connection: Connection) {

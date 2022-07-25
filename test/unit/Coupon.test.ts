@@ -1,4 +1,4 @@
-import Coupon from "../src/Coupon";
+import Coupon from "../../src/domain/entities/Coupon";
 
 test("Calcula o valor de um desconto de 10%", function () {
   const coupon = new Coupon("ABC-10", 10, new Date())

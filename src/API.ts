@@ -1,6 +1,6 @@
-import ExpressAdapter from "./ExpressAdapter";
-import OrderController from "./OrderController";
-import PgPromiseAdapter from "./PgPromiseAdapter";
+import ExpressAdapter from "./infra/http/ExpressAdapter";
+import OrderController from "./infra/controllers/OrderController";
+import PgPromiseAdapter from "./infra/database/PgPromiseAdapter";
 
 const http = new ExpressAdapter();
 const connection = new PgPromiseAdapter();

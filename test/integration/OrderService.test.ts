@@ -1,10 +1,10 @@
-import ProductRepositoryMemory from "../src/ProductRepositoryMemory";
-import OrderService from "../src/OrderService";
-import CouponRepositoryMemory from "../src/CouponRepositoryMemory";
-import OrderRepository from "../src/OrderRepository";
-import CouponRepository from "../src/CouponRepository";
-import ProductRepository from "../src/ProductRepository";
-import OrderRepositoryMemory from "../src/OrderRepositoryMemory";
+import ProductRepositoryMemory from "../../src/infra/repositories/memory/ProductRepositoryMemory";
+import OrderService from "../../src/application/OrderService";
+import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
+import OrderRepository from "../../src/domain/repositories/OrderRepository";
+import CouponRepository from "../../src/domain/repositories/CouponRepository";
+import ProductRepository from "../../src/domain/repositories/ProductRepository";
+import OrderRepositoryMemory from "../../src/infra/repositories/memory/OrderRepositoryMemory";
 
 let orderRepository: OrderRepository;
 let couponRepository: CouponRepository;

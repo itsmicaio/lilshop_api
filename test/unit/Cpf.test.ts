@@ -1,4 +1,4 @@
-import Cpf from '../src/Cpf'
+import Cpf from '../../src/domain/entities/Cpf'
 
 test("Deve validar um número de cpf em branco", function () {
   expect(() => new Cpf("")).toThrow(new Error("Invalid CPF"))

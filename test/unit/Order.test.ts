@@ -1,7 +1,7 @@
-import Product from '../src/Product'
-import Order from '../src/Order'
-import Coupon from '../src/Coupon';
-import Dimension from '../src/Dimension';
+import Product from '../../src/domain/entities/Product'
+import Order from '../../src/domain/entities/Order'
+import Coupon from '../../src/domain/entities/Coupon';
+import Dimension from '../../src/domain/entities/Dimension';
 
 let product1: Product;
 let product2: Product;
