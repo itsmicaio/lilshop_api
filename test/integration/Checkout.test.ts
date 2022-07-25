@@ -1,24 +1,15 @@
-import ProductRepositoryMemory from "../../src/infra/repositories/memory/ProductRepositoryMemory";
 import Checkout from "../../src/application/Checkout";
+import ProductRepositoryMemory from "../../src/infra/repositories/memory/ProductRepositoryMemory";
 import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
-import OrderRepository from "../../src/domain/repositories/OrderRepository";
-import CouponRepository from "../../src/domain/repositories/CouponRepository";
-import ProductRepository from "../../src/domain/repositories/ProductRepository";
 import OrderRepositoryMemory from "../../src/infra/repositories/memory/OrderRepositoryMemory";
 
-let orderRepository: OrderRepository;
-let couponRepository: CouponRepository;
-let productRepository: ProductRepository;
-
-beforeEach(function () { 
-	productRepository = new ProductRepositoryMemory();
-	couponRepository = new CouponRepositoryMemory();
-	orderRepository = new OrderRepositoryMemory();
-})
 
 test("Deve criar um pedido", async function () {
+  const productRepository = new ProductRepositoryMemory();
+	const couponRepository = new CouponRepositoryMemory();
+	const orderRepository = new OrderRepositoryMemory();
 	const checkout = new Checkout(productRepository, couponRepository, orderRepository);
-	const output = await checkout.checkout({
+	const output = await checkout.execute({
 		cpf: "886.634.854-68",
 		orderProducts: [
 			{ idProduct: 1, quantity: 1 },

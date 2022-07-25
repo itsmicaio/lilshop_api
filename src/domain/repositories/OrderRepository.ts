@@ -2,6 +2,6 @@ import Order from "../entities/Order";
 
 export default interface OrderRepository {
 	count(): Promise<number>
-	saveOrder(order: Order): Promise<boolean>
-	getOrder (orderCode: string): Promise<Order>;
+	save(order: Order): Promise<boolean>
+	get(orderCode: string): Promise<Order>;
 }

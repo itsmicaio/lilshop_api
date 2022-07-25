@@ -10,7 +10,7 @@ export default class OrderService {
 		readonly orderRepository: OrderRepository,
 	) {}
 
-	async checkout(input: Input): Promise<Output> {
+	async execute(input: Input): Promise<Output> {
 		const sequence = await this.orderRepository.count() + 1
 		const order = new Order(
 			input.cpf,
@@ -27,7 +27,7 @@ export default class OrderService {
 			order.addCoupon(coupon)
 		}
 
-		this.orderRepository.saveOrder(order)
+		this.orderRepository.save(order)
 		return {code: order.getCode()}
 	}
 }

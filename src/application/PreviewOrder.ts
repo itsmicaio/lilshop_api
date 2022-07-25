@@ -2,13 +2,13 @@ import CouponRepository from "../domain/repositories/CouponRepository";
 import Order from "../domain/entities/Order";
 import ProductRepository from "../domain/repositories/ProductRepository";
 
-export default class OrderService {
+export default class PreviewOrder {
 	constructor(
 		readonly productRepository: ProductRepository,
 		readonly couponRepository: CouponRepository
 	) {}
 
-	async preview(input: Input): Promise<Output> {
+	async execute(input: Input): Promise<Output> {
 		const order = new Order(input.cpf);
 		for (const orderItem of input.orderProducts) {
 			const item = await this.productRepository.getProduct(orderItem.idProduct);

@@ -1,25 +1,12 @@
 import ProductRepositoryMemory from "../../src/infra/repositories/memory/ProductRepositoryMemory";
-import OrderService from "../../src/application/PreviewOrder";
+import PreviewOrder from "../../src/application/PreviewOrder";
 import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
-import OrderRepository from "../../src/domain/repositories/OrderRepository";
-import CouponRepository from "../../src/domain/repositories/CouponRepository";
-import ProductRepository from "../../src/domain/repositories/ProductRepository";
-import OrderRepositoryMemory from "../../src/infra/repositories/memory/OrderRepositoryMemory";
-
-let orderRepository: OrderRepository;
-let couponRepository: CouponRepository;
-let productRepository: ProductRepository;
-
-beforeEach(function () { 
-	productRepository = new ProductRepositoryMemory();
-	couponRepository = new CouponRepositoryMemory();
-	orderRepository = new OrderRepositoryMemory();
-})
 
 test("Deve simular um pedido", async function () {
-
-	const orderService = new OrderService(productRepository, couponRepository);
-	const output = await orderService.preview({
+	const productRepository = new ProductRepositoryMemory();
+	const couponRepository = new CouponRepositoryMemory();
+	const previewOrder = new PreviewOrder(productRepository, couponRepository);
+	const output = await previewOrder.execute({
 		cpf: "886.634.854-68",
 		orderProducts: [
 			{ idProduct: 1, quantity: 1 },
