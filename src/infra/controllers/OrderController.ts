@@ -1,5 +1,5 @@
 import Http from "../http/Http";
-import OrderService from "../../application/OrderService";
+import OrderService from "../../application/PreviewOrder";
 import CouponRepositoryMemory from "../repositories/memory/CouponRepositoryMemory";
 import OrderRepositoryMemory from "../repositories/memory/OrderRepositoryMemory";
 import ProductRepositoryDatabase from "../repositories/database/ProductRepositoryDatabase";
