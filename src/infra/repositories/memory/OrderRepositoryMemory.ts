@@ -7,7 +7,7 @@ export default class OrderRepositoryMemory implements OrderRepository {
 	orders: Order[];
 
 	constructor() {
-		const order = new Order("143.402.457-12", new Date("2020-01-01T00:00:00"), "202000000001")
+		const order = new Order("143.402.457-12", new Date("2020-01-01T00:00:00"), 1)
 		order.addProduct(new Product(1, "Echo Dot", 100.00), 1)
 		this.orders = [
 			order
@@ -20,7 +20,7 @@ export default class OrderRepositoryMemory implements OrderRepository {
 	}
 
 	async getOrder(orderCode: string): Promise<Order> {
-		const order = this.orders.find(order => order.code === orderCode);
+		const order = this.orders.find(order => order.getCode() === orderCode);
 		if (!order) throw new Error("Order not found");
 		return order;
 	}

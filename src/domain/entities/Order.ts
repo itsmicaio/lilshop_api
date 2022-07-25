@@ -1,5 +1,6 @@
 import Coupon from "./Coupon";
 import Cpf from "./Cpf";
+import OrderCode from "./OrderCode";
 import OrderProduct from "./OrderProduct";
 import Product from "./Product";
 import ShippingCalculator from "./ShippingCalculator";
@@ -9,13 +10,15 @@ export default class Order {
   products: OrderProduct[] = [];
   coupon?: Coupon;
   shipping: number = 0;
+  code: OrderCode;
 
   constructor(
     cpf: string,
     readonly date: Date = new Date(),
-    readonly code: string = "202200000000"
+    sequence: number = 1,
   ) {
     this.cpf = new Cpf(cpf)
+    this.code = new OrderCode(date, sequence)
   }
 
   addCoupon(coupon: Coupon) {
@@ -34,6 +37,10 @@ export default class Order {
       const {product, quantity} = orderProduct
       this.addProduct(product, quantity)
     }
+  }
+
+  getCode() {
+    return this.code.value
   }
 
   getShipping() {

@@ -1,6 +1,6 @@
 import CouponRepository from "../domain/repositories/CouponRepository";
 import Order from "../domain/entities/Order";
-import OrderCodeGenerator from "../domain/entities/OrderCodeGenarator";
+import OrderCodeGenerator from "../domain/entities/OrderCode";
 import OrderRepository from "../domain/repositories/OrderRepository";
 import ProductRepository from "../domain/repositories/ProductRepository";
 
@@ -33,9 +33,11 @@ export default class OrderService {
 	}
 
 	async checkout(input: Input): Promise<CheckoutOutput> {
-		const code = await OrderCodeGenerator.generate(this.orderRepository, input.date)
+		const sequence = await this.orderRepository.count() + 1
 		const order = new Order(
-			input.cpf
+			input.cpf,
+			input.date,
+			sequence
 		);
 		for (const orderItem of input.orderProducts) {
 			const item = await this.productRepository.getProduct(orderItem.idProduct);
@@ -48,7 +50,7 @@ export default class OrderService {
 		}
 
 		this.orderRepository.saveOrder(order)
-		return {code}
+		return {code: order.getCode()}
 	}
 }
 
