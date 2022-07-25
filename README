@@ -1,9 +1,12 @@
-Sistema de vendas online com a possibilidade de realizar pedidos com múltiplos itens, cada um deles com uma quantidade variável, calculando o frete, os impostos, aplicando um cupom de desconto e ainda interagindo com o estoque
+# LilShop
+This system is an api for a little shop online. It was produced for student purposes and using techniques learned in the course [Clean Code e Clean Architecture - Turma 7](https://app.branas.io/public/products/d18059b4-23ed-4604-89f9-21cd642d173f)
 
-Este projeto foi produzido com fins estudantis e utilizando técnicas ensinadas no curso [Clean Code e Clean Architecture - Turma 7](https://app.branas.io/public/products/d18059b4-23ed-4604-89f9-21cd642d173f)
-
-## Funcionalidades
-- Validação de CPF (calculo dos dígitos verificadores)
+## Features
+- CPF validation (verification digits calculating);
+- Order checkout;
+- Preview order;
+- Shipping calculate;
+- Product and invetory control;
 
 ## Development DB
 The Postgres DB is configured with Docker.
