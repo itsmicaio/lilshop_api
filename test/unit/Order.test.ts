@@ -85,3 +85,8 @@ test("Deve adicionar um produto repetido", function () {
   order.addProduct(product1, 1);
   expect(() => order.addProduct(product1, 1)).toThrow("Duplicated product");
 })
+
+test("Deve criar um pedido com código", function () {
+  const order = new Order(validCpf, new Date("2020-01-01T00:00:00"), 1)
+  expect(order.getCode()).toBe("2020000000001")
+})
