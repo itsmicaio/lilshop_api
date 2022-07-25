@@ -4,3 +4,8 @@ Este projeto foi produzido com fins estudantis e utilizando técnicas ensinadas 
 
 ## Funcionalidades
 - Validação de CPF (calculo dos dígitos verificadores)
+
+## Development DB
+The Postgres DB is configured with Docker.
+
+To up, run: docker-compose -f docker/docker-compose.yml up
