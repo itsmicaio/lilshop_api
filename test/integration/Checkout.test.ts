@@ -1,13 +1,16 @@
 import Checkout from "../../src/application/Checkout";
-import ProductRepositoryMemory from "../../src/infra/repositories/memory/ProductRepositoryMemory";
+import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
-import OrderRepositoryMemory from "../../src/infra/repositories/memory/OrderRepositoryMemory";
+import ProductRepositoryDatabase from "../../src/infra/repositories/database/ProductRepositoryDatabase";
+import OrderRepositoryDatabase from "../../src/infra/repositories/database/OrderRepositoryDatabase";
 
 
 test("Deve criar um pedido", async function () {
-  const productRepository = new ProductRepositoryMemory();
+	const connection = new PgPromiseAdapter();
+  const productRepository = new ProductRepositoryDatabase(connection);
 	const couponRepository = new CouponRepositoryMemory();
-	const orderRepository = new OrderRepositoryMemory();
+	const orderRepository = new OrderRepositoryDatabase(connection);
+	await orderRepository.clean();
 	const checkout = new Checkout(productRepository, couponRepository, orderRepository);
 	const output = await checkout.execute({
 		cpf: "886.634.854-68",
@@ -18,7 +21,8 @@ test("Deve criar um pedido", async function () {
 		],
 		date: new Date("2020-01-01T00:00:00")
 	});
-	expect(output.code).toBe("202000000002");
+	expect(output.code).toBe("202000000001");
 	const count = await orderRepository.count()
-	expect(count).toBe(2);
+	expect(count).toBe(1);
+	await connection.close();
 })
