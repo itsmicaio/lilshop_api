@@ -1,19 +1,24 @@
-import ShippingCalculator from "../domain/entities/ShippingCalculator";
 import ProductRepository from "../domain/repositories/ProductRepository";
+import CalculateShippingGateway from "./gateway/CalculateShippingGateway";
 
 export default class SimulateShipping {
 
-	constructor (readonly productRepository: ProductRepository) {
+	constructor (readonly productRepository: ProductRepository, readonly calculateShippingGateway: CalculateShippingGateway) {
 	}
 
 	async execute (input: Input): Promise<Output> {
-		let total = 0;
+		const orderProducts = []
 		for (const orderProduct of input.orderProducts) {
-			const item = await this.productRepository.getProduct(orderProduct.idProduct);
-			total += ShippingCalculator.calculate(item) * orderProduct.quantity;
+			const product = await this.productRepository.getProduct(orderProduct.idProduct);
+			orderProducts.push({
+				volume: product.getVolume(),
+				density: product.getDensity(),
+				quantity: orderProduct.quantity
+			})
 		}
+		const output = await this.calculateShippingGateway.calculate({orderProducts})
 		return {
-			total
+			total: output.total
 		}
 	}
 }
