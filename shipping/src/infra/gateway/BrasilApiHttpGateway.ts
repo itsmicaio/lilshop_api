@@ -7,7 +7,7 @@ export default class BrasilApiHttpGateway implements ZipcodeGateway {
 
   async getZipcode(input: Input): Promise<Output> {
     const response = await this.gateway.call(`/cep/v2/${input.code}`, "get")
-    console.log(response.data)
+
     return {
       code: response.data.cep,
       state: response.data.state,
