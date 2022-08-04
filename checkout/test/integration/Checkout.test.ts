@@ -1,14 +1,14 @@
 import Checkout from "../../src/application/Checkout";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
-import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
 import ProductRepositoryDatabase from "../../src/infra/repositories/database/ProductRepositoryDatabase";
 import OrderRepositoryDatabase from "../../src/infra/repositories/database/OrderRepositoryDatabase";
+import CouponRepositoryDatabase from "../../src/infra/repositories/database/CouponRepositoryDatabase";
 
 
 test("Deve criar um pedido", async function () {
 	const connection = new PgPromiseAdapter();
   const productRepository = new ProductRepositoryDatabase(connection);
-	const couponRepository = new CouponRepositoryMemory();
+	const couponRepository = new CouponRepositoryDatabase(connection);
 	const orderRepository = new OrderRepositoryDatabase(connection);
 	await orderRepository.clean();
 	const checkout = new Checkout(productRepository, couponRepository, orderRepository);

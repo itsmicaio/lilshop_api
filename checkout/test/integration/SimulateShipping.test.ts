@@ -4,7 +4,7 @@ import AxiosGateway from "../../src/infra/gateway/AxiosGateway";
 import CalculateShippingHttGateway from "../../src/infra/gateway/CalculateShippingHttpGateway";
 import ProductRepositoryDatabase from "../../src/infra/repositories/database/ProductRepositoryDatabase";
 
-test("Deve simular o frete", async function () {
+test.skip("Deve simular o frete", async function () {
 	const connection = new PgPromiseAdapter();
 	const productRepository = new ProductRepositoryDatabase(connection);
 

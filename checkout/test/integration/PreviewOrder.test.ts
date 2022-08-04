@@ -1,12 +1,12 @@
 import PreviewOrder from "../../src/application/PreviewOrder";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
-import CouponRepositoryMemory from "../../src/infra/repositories/memory/CouponRepositoryMemory";
 import ProductRepositoryDatabase from "../../src/infra/repositories/database/ProductRepositoryDatabase";
+import CouponRepositoryDatabase from "../../src/infra/repositories/database/CouponRepositoryDatabase";
 
 test("Deve simular um pedido", async function () {
 	const connection = new PgPromiseAdapter();
 	const productRepository = new ProductRepositoryDatabase(connection);
-	const couponRepository = new CouponRepositoryMemory();
+	const couponRepository = new CouponRepositoryDatabase(connection);
 	const previewOrder = new PreviewOrder(productRepository, couponRepository);
 	const output = await previewOrder.execute({
 		cpf: "886.634.854-68",
