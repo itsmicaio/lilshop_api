@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres:12.1-alpine
+    container_name: lilshop_db
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: lilshop
+      POSTGRES_USER: lilshop_u
+      POSTGRES_PASSWORD: lilshop_p
+    ports:
+      - 5432:5432
