@@ -1,4 +1,4 @@
-import ShippingCalculator from "../../src/domain/ShippingCalculator";
+import ShippingCalculator from "../../src/domain/entities/ShippingCalculator";
 
 test("Deve calcular o valor do frete com a taxa minima", function () {
   const total = ShippingCalculator.calculate(0.003, 333)

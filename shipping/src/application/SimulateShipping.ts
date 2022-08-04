@@ -1,4 +1,4 @@
-import ShippingCalculator from "../domain/ShippingCalculator";
+import ShippingCalculator from "../domain/entities/ShippingCalculator";
 
 export default class SimulateShipping {
 
